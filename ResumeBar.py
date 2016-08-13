@@ -4,6 +4,7 @@ import csv
 f = open("resume.txt","r");
 resume = f.read();
 
+#remove all the special characters
 resume_cleaned = re.sub('[^a-zA-Z\n]', ' ', resume);
 resume_cleaned = resume_cleaned.lower();
 #print (resume_cleaned);
@@ -14,6 +15,7 @@ print(resume_words);
 
 frequency_map = dict();
 
+#compute the word frequency
 detector = ['']
 for word in resume_words:
         if word not in detector:
@@ -22,6 +24,7 @@ for word in resume_words:
             else:
                 frequency_map[word]+=1;
 
+#this will save the result to a csv file
 with open('mycsvfile.csv', 'w') as f:  # Just use 'w' mode in 3.x
     w = csv.DictWriter(f, frequency_map.keys())
     w.writeheader()
